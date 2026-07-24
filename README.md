@@ -1,2 +1,2 @@
-# pl-dbd-final-project
-Repository holding all code for the combined final project for both my Programming Languages course and Database Design course.
+# Final Project for Programming Languages and Database Design - Luke Falanga
+For this combined project, I have created an e-commerce system, utilizing MariaDB as my DBMS and building my application using Python in order to demonstrate object-oriented program design and principles.
