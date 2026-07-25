@@ -6,7 +6,7 @@ class DatabaseManager:
         self.connection = mariadb.connect(
             host="localhost",
             user="root",
-            password="Hudson56",
+            password="Hudson56!",
             database="ecommerce"
         )
 
