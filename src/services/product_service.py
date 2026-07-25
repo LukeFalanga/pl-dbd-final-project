@@ -34,10 +34,20 @@ class ProductService:
     def add_stock(self, product_id, quantity):
         cursor = self.db.get_cursor()
 
+        # Check if product exists
+        cursor.execute("SELECT ProductID FROM Product WHERE ProductID = ?", (product_id,))
+        product = cursor.fetchone()
+
+        if product is None:
+            print("Product does not exist.")
+            cursor.close()
+            return False
+
         cursor.execute("UPDATE Product SET Stock = Stock + ? WHERE ProductID = ?", (quantity, product_id))
 
         self.db.commit()
         cursor.close()
+        return True
 
     # Allows for a new product to be added to the database
     def add_product(self, product):

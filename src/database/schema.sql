@@ -3,7 +3,7 @@ CREATE TABLE Customer (
     CustID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
-    Email VARCHAR(100)
+    Email VARCHAR(100) UNIQUE
 );
 
 CREATE TABLE Product (
