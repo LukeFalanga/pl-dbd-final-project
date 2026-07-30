@@ -13,8 +13,11 @@ class Customer:
         return self.__first_name
 
     def get_customer_last_name(self):
-        return self.__first_name
+        return self.__last_name
 
     def get_customer_email(self):
         return self.__email
+
+    def set_customer_email(self, newEmail):
+        self.__email = newEmail
     

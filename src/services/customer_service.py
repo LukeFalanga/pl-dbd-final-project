@@ -18,7 +18,7 @@ class CustomerService:
             while len(newEmail) < 1:
                 newEmail = str(input("Please enter your Email: "))
 
-            customer.email = newEmail
+            customer.set_customer_email(newEmail)
             cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.get_customer_email(),))
             email_exists = cursor.fetchone()[0]
 
