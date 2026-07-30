@@ -200,7 +200,7 @@ def register_customer(cs):
     print("Successfully Registered! Logging into portal!")
 
     # This will return the newly created customer in the database with their Customer ID, which was not known previously
-    return cs.get_customer_by_email(new_customer.email)
+    return cs.get_customer_by_email(new_customer.get_customer_email())
 
     
 
