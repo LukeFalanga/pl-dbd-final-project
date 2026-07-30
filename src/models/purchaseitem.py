@@ -10,7 +10,7 @@ class PurchaseItem:
         return self.__purchase_id
 
     def get_purchase_product_id(self):
-        return self.__product_id(self)
+        return self.__product_id
 
     def get_purchase_quantity(self):
         return self.__quantity
