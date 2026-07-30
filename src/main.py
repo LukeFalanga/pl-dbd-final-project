@@ -128,6 +128,7 @@ def customer_menu(prs, ss, pus, currCustomer):
         elif choice == "5":
             print("Clearing Cart.")
             customer_cart = []
+            currTotal = 0
 
         elif choice == "6":
             print("Viewing all Items in Cart:")
