@@ -140,7 +140,7 @@ def customer_menu(prs, ss, pus, currCustomer):
                 continue
 
             print("Checking out all items in the cart!")
-            latest_purchase_id = pus.make_purchase(currCustomer.customer_id, customer_cart, currTotal)
+            latest_purchase_id = pus.make_purchase(currCustomer.get_customer_id(), customer_cart, currTotal)
             print(f"Purchase Successful for ${currTotal}! Showing Receipt at: ")
             pus.show_purchase_items(latest_purchase_id)
             print("\n Clearing cart and total.")
@@ -149,7 +149,7 @@ def customer_menu(prs, ss, pus, currCustomer):
 
         elif choice == "8":
             print("Viewing Purchase History:")
-            pus.show_purchase_history(currCustomer.customer_id)
+            pus.show_purchase_history(currCustomer.get_customer_id())
 
         elif choice == "9":
             purchase_id = get_integer("Please enter the ID of the purchase you wish to see the items you bought for: ")
