@@ -53,7 +53,7 @@ class ProductService:
     def add_product(self, product):
         cursor = self.__db.get_cursor()
 
-        cursor.execute("INSERT INTO Product (ProductName, Price, Stock) VALUES (?, ?, ?)", (product.name, product.price, product.stock))
+        cursor.execute("INSERT INTO Product (ProductName, Price, Stock) VALUES (?, ?, ?)", (product.get_product_name(), product.get_product_price(), product.get_product_stock()))
 
         self.__db.commit()
         cursor.close()

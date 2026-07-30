@@ -9,7 +9,7 @@ class CustomerService:
         cursor = self.__db.get_cursor()
 
         # The code through the two while loops ensures UNIQUE emails, preventing a database error
-        cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.email,))
+        cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.get_customer_email(),))
         email_exists = cursor.fetchone()[0]
 
         while email_exists > 0:
@@ -19,10 +19,10 @@ class CustomerService:
                 newEmail = str(input("Please enter your Email: "))
 
             customer.email = newEmail
-            cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.email,))
+            cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.get_customer_email(),))
             email_exists = cursor.fetchone()[0]
 
-        cursor.execute("INSERT INTO Customer (FirstName, LastName, Email) VALUES (?, ?, ?)", (customer.first_name, customer.last_name, customer.email))
+        cursor.execute("INSERT INTO Customer (FirstName, LastName, Email) VALUES (?, ?, ?)", (customer.get_customer_first_name(), customer.get_customer_last_name(), customer.get_customer_email()))
 
         self.__db.commit()
         cursor.close()

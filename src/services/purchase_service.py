@@ -13,8 +13,8 @@ class PurchaseService:
         purchase_id = cursor.lastrowid
 
         for item in cart:
-            cursor.execute("INSERT INTO PurchaseItem(PurchaseID, ProductID, Quantity) VALUES (?, ?, ?)", (purchase_id, item.product_id, item.quantity))
-            cursor.execute("UPDATE Product SET Stock = Stock - ? WHERE ProductID = ?", (item.quantity, item.product_id))
+            cursor.execute("INSERT INTO PurchaseItem(PurchaseID, ProductID, Quantity) VALUES (?, ?, ?)", (purchase_id, item.get_purchase_product_id(), item.get_purchase_quantity()))
+            cursor.execute("UPDATE Product SET Stock = Stock - ? WHERE ProductID = ?", (item.get_purchase_quantity(), item.get_purchase_product_id()))
 
         self.__db.commit()
         cursor.close()

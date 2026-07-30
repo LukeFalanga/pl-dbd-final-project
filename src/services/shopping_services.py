@@ -46,7 +46,7 @@ class ShoppingServices:
                    price = cursor.fetchone()[0]
                    cursor.close()
 
-                   total_removed = price * item.quantity
+                   total_removed = price * item.get_purchase_quantity()
 
                    cart.remove(item)
                    return total_removed
@@ -54,5 +54,5 @@ class ShoppingServices:
 
     def view_cart(self, cart):
          for item in cart:
-              print(f"Product ID: {item.product_id}, Quantity: {item.quantity}")
+              print(f"Product ID: {item.get_purchase_product_id()}, Quantity: {item.get_purchase_quantity()}")
          
