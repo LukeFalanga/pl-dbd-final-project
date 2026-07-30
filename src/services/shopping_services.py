@@ -38,7 +38,7 @@ class ShoppingServices:
     # Removes an item from the cart (including its quantity)
     def remove_from_cart(self, product_id, cart):
          for item in cart:
-              if item.product_id == product_id:
+              if item.get_purchase_product_id() == product_id:
 
                    cursor = self.__db.get_cursor()
                    cursor.execute("SELECT Price FROM Product WHERE ProductID = ?", (product_id,))
