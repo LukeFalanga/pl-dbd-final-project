@@ -3,11 +3,11 @@ from models.purchaseitem import PurchaseItem
 # Class definition for shopping services
 class ShoppingServices:
     def __init__(self, db):
-        self.db = db
+        self.__db = db
 
     # Adds an item to the cart
     def add_to_cart(self, product_id, quantity, cart):
-            cursor = self.db.get_cursor()
+            cursor = self.__db.get_cursor()
 
             cursor.execute("SELECT ProductID From Product WHERE ProductID = ?", (product_id,))
             prod = cursor.fetchone()
@@ -40,7 +40,7 @@ class ShoppingServices:
          for item in cart:
               if item.product_id == product_id:
 
-                   cursor = self.db.get_cursor()
+                   cursor = self.__db.get_cursor()
                    cursor.execute("SELECT Price FROM Product WHERE ProductID = ?", (product_id,))
 
                    price = cursor.fetchone()[0]

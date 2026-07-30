@@ -2,11 +2,11 @@ from datetime import datetime
 # Class definition for purchase services
 class PurchaseService:
     def __init__(self, db):
-        self.db = db
+        self.__db = db
 
     # Checks out customer's cart and adds all items to the purchaseItem table and purchases table
     def make_purchase(self, customer_id, cart, total):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
         purchase_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("INSERT INTO Purchases(CustID, PurchaseDate, Total) VALUES (?, ?, ?)", (customer_id, purchase_date, total))
 
@@ -16,14 +16,14 @@ class PurchaseService:
             cursor.execute("INSERT INTO PurchaseItem(PurchaseID, ProductID, Quantity) VALUES (?, ?, ?)", (purchase_id, item.product_id, item.quantity))
             cursor.execute("UPDATE Product SET Stock = Stock - ? WHERE ProductID = ?", (item.quantity, item.product_id))
 
-        self.db.commit()
+        self.__db.commit()
         cursor.close()
 
         return purchase_id
 
     # Shows total purchase history
     def show_purchase_history(self, customer_id):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
 
         cursor.execute("SELECT * FROM Purchases WHERE CustID = ?", (customer_id,))
         history = cursor.fetchall()
@@ -35,7 +35,7 @@ class PurchaseService:
 
     # Shows all items bought and their quantities in a singular purchase
     def show_purchase_items(self, purchase_id):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
 
         cursor.execute("SELECT Product.ProductName, PurchaseItem.Quantity, Product.Price FROM PurchaseItem JOIN Product ON PurchaseItem.ProductID = Product.ProductID WHERE PurchaseItem.PurchaseID = ?", (purchase_id,))
 

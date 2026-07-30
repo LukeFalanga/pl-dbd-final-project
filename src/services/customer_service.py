@@ -2,11 +2,11 @@ from models.customer import Customer
 # Class definition for customer services
 class CustomerService:
     def __init__(self, db):
-        self.db = db
+        self.__db = db
 
     # Adds a customer to the database
     def add_customer(self, customer):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
 
         # The code through the two while loops ensures UNIQUE emails, preventing a database error
         cursor.execute("SELECT COUNT(*) FROM Customer WHERE Email = ?", (customer.email,))
@@ -24,12 +24,12 @@ class CustomerService:
 
         cursor.execute("INSERT INTO Customer (FirstName, LastName, Email) VALUES (?, ?, ?)", (customer.first_name, customer.last_name, customer.email))
 
-        self.db.commit()
+        self.__db.commit()
         cursor.close()
 
     # Retrieves a customer from the database as a Customer object, via email
     def get_customer_by_id(self, customer_id):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
 
         cursor.execute("SELECT * FROM Customer WHERE CustID = ?", (customer_id,))
 
@@ -46,7 +46,7 @@ class CustomerService:
 
     # Retrieves a customer from the database as a Customer object, via email
     def get_customer_by_email(self, email):
-        cursor = self.db.get_cursor()
+        cursor = self.__db.get_cursor()
 
         cursor.execute("SELECT * FROM Customer WHERE Email = ?", (email,))
 
